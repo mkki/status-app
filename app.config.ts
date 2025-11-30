@@ -3,7 +3,7 @@ import 'tsx/cjs';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'status',
+  name: '상태창',
   slug: 'status-app',
   version: '1.0.0',
   orientation: 'portrait',
