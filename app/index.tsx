@@ -25,7 +25,7 @@ export default function Index() {
         webViewRef.current.postMessage(
           JSON.stringify({
             type: MESSAGE_TYPES.AUTH_SUCCESS,
-            data: { code: params.code, provider: params.provider },
+            data: { ...params },
           })
         );
       }
