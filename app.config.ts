@@ -18,11 +18,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     usesAppleSignIn: true,
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
+      NSPhotoLibraryUsageDescription: '프로필 사진 및 게시물에 사용할 사진을 선택하기 위해 갤러리 접근 권한이 필요합니다.',
+      NSPhotoLibraryAddUsageDescription: '선택한 사진을 저장하기 위해 갤러리 접근 권한이 필요합니다.',
     },
   },
   android: {
     edgeToEdgeEnabled: true,
     package: 'com.status.app.status',
+    permissions: [
+      'READ_EXTERNAL_STORAGE',
+      'WRITE_EXTERNAL_STORAGE',
+      'READ_MEDIA_IMAGES',
+    ],
   },
   web: {
     bundler: 'metro',
@@ -41,6 +48,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     ],
     'react-native-video',
     ['./plugins/withPlugin.ts'],
+    [
+      'expo-media-library',
+      {
+        photosPermission: '프로필 사진 및 게시물에 사용할 사진을 선택하기 위해 갤러리 접근 권한이 필요합니다.',
+        savePhotosPermission: '선택한 사진을 저장하기 위해 갤러리 접근 권한이 필요합니다.',
+        isAccessMediaLocationEnabled: true,
+        granularPermissions: ['photo'],
+      },
+    ],
   ],
   experiments: {
     typedRoutes: true,

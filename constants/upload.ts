@@ -1,0 +1,1 @@
+export const UPLOAD_PHOTO_ENDPOINT = process.env.EXPO_PUBLIC_UPLOAD_ENDPOINT;
