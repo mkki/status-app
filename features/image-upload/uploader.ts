@@ -24,12 +24,11 @@ export const uploadPhoto = async (
   const endpoint = ensureEndpoint();
 
   const formData = new FormData();
-  formData.append('file', {
+  formData.append('files', {
     uri: localUri,
     name: `${id}.jpg`,
     type: 'image/jpeg',
   } as unknown as Blob);
-  formData.append('questId', questId);
 
   const headers: Record<string, string> = {};
   if (authToken) {
@@ -46,12 +45,13 @@ export const uploadPhoto = async (
     throw new Error(`업로드 실패 (status ${response.status})`);
   }
 
-  const json = (await response.json()) as { url?: string };
-  if (!json.url) {
+  const json = (await response.json()) as { data?: { urls?: string[] } };
+  const url = json.data?.urls?.[0];
+  if (!url) {
     throw new Error('서버 응답에 URL이 없습니다');
   }
 
-  return { url: json.url };
+  return { url };
 };
 
 export const uploadPhotos = async (
