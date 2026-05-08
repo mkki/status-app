@@ -1,1 +1,1 @@
-export const UPLOAD_PHOTO_ENDPOINT = process.env.EXPO_PUBLIC_UPLOAD_ENDPOINT;
+export const UPLOAD_PHOTO_ENDPOINT = 'https://statoverflow.cloud/api/v1/upload/images';
